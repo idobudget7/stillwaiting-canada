@@ -1,0 +1,191 @@
+{
+  "verified": "2026-10-05",
+  "reviewAfterDays": 30,
+  "services": [
+    {
+      "id": "passport-regular",
+      "name": "Canadian passport — regular service",
+      "category": "Passport",
+      "variantLabel": "How did you apply?",
+      "sourceLabel": "Government of Canada — Passport service standards",
+      "sourceUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports/processing-times.html",
+      "sourceChecks": ["10 business days", "20 business days"],
+      "variants": [
+        {
+          "id": "passport-office",
+          "label": "In person — passport office / 10-day Service Canada location",
+          "amount": 10,
+          "unit": "business_days",
+          "standardText": "10 business days",
+          "nextAction": "If the published service standard has passed, check your application status using the official Passport Program service. A small number of files can take longer, especially if corrections, new photos, verifications or additional information are needed.",
+          "refundNote": "You may be eligible for an automatic fee refund under the Service Fees Act if the applicable remission rules are met."
+        },
+        {
+          "id": "service-canada-mail-online",
+          "label": "Regular Service Canada location, outreach site, mail or online",
+          "amount": 20,
+          "unit": "business_days",
+          "standardText": "20 business days",
+          "nextAction": "If the published service standard has passed, check your application status using the official Passport Program service. Mailing time is not included in the service standard.",
+          "refundNote": "You may be eligible for an automatic fee refund under the Service Fees Act if the applicable remission rules are met."
+        }
+      ]
+    },
+    {
+      "id": "passport-urgent-express",
+      "name": "Canadian passport — urgent or express pickup",
+      "category": "Passport",
+      "variantLabel": "Which pickup service?",
+      "sourceLabel": "Government of Canada — Passport service standards",
+      "sourceUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports/processing-times.html",
+      "sourceChecks": ["urgent", "express", "business days"],
+      "variants": [
+        {
+          "id": "urgent",
+          "label": "Urgent pickup",
+          "amount": 1,
+          "unit": "business_days",
+          "standardText": "By end of next business day",
+          "nextAction": "Use the pickup date provided by the passport officer as your primary date. If it has passed, contact the Passport Program or the office handling the application."
+        },
+        {
+          "id": "express",
+          "label": "Express pickup",
+          "amount": 9,
+          "unit": "business_days",
+          "standardText": "2 to 9 business days",
+          "nextAction": "This calculator uses the outer end of the published 2-to-9-business-day range. Use the pickup date provided by the passport officer if you were given one."
+        }
+      ]
+    },
+    {
+      "id": "bank-complaint",
+      "name": "Complaint to a federally regulated bank",
+      "category": "Banking",
+      "variantLabel": "Complaint type",
+      "sourceLabel": "Financial Consumer Agency of Canada — Bank complaint rights",
+      "sourceUrl": "https://www.canada.ca/en/financial-consumer-agency/services/complaints/file-complaint-financial-institution.html",
+      "sourceChecks": ["56 calendar days", "Ombudsman for Banking Services and Investments"],
+      "variants": [
+        {
+          "id": "bank-written-response",
+          "label": "I made a complaint to my bank",
+          "amount": 56,
+          "unit": "calendar_days",
+          "standardText": "56 calendar days",
+          "nextAction": "A federally regulated bank must provide a detailed written response within 56 calendar days from when you first made the complaint. You may contact OBSI on the earlier of: more than 56 calendar days since you filed, or when the bank has provided its detailed written response and closed the file."
+        }
+      ]
+    },
+    {
+      "id": "atip",
+      "name": "Federal access to information / personal information request",
+      "category": "ATIP",
+      "variantLabel": "Request type",
+      "sourceLabel": "Treasury Board of Canada Secretariat — How ATIP requests work",
+      "sourceUrl": "https://www.canada.ca/en/treasury-board-secretariat/services/access-information-privacy/access-information/how-access-information-personal-information-requests-work.html",
+      "sourceChecks": ["30 days", "extension"],
+      "variants": [
+        {
+          "id": "access-info",
+          "label": "Access to Information Act request",
+          "amount": 30,
+          "unit": "calendar_days",
+          "rollForwardIfClosed": true,
+          "standardText": "30 calendar days (subject to permitted extensions)",
+          "nextAction": "Federal institutions generally have 30 calendar days to respond. The deadline is counted from the day after receipt of a complete request; if it lands on a weekend or holiday, it moves to the next working day. A permitted extension can apply, and you should be notified within the first 30 days."
+        },
+        {
+          "id": "privacy",
+          "label": "Privacy Act personal information request",
+          "amount": 30,
+          "unit": "calendar_days",
+          "rollForwardIfClosed": true,
+          "standardText": "30 calendar days (subject to permitted extensions)",
+          "nextAction": "Federal institutions generally have 30 calendar days to respond. The deadline is counted from the day after receipt of a complete request; if it lands on a weekend or holiday, it moves to the next working day. Privacy Act requests may be extended in specified circumstances, so check any extension notice before treating the request as overdue."
+        }
+      ]
+    },
+    {
+      "id": "cra-t1",
+      "name": "CRA individual tax return (T1)",
+      "category": "CRA",
+      "variantLabel": "How was the return filed?",
+      "sourceLabel": "Canada Revenue Agency — 2026–27 Service standards",
+      "sourceUrl": "https://www.canada.ca/en/revenue-agency/services/about-canada-revenue-agency-cra/service-standards-cra/service-standards-2026-27.html",
+      "sourceChecks": ["within two weeks", "within 12 weeks"],
+      "variants": [
+        {
+          "id": "digital",
+          "label": "Digital — on-time, standard individual return",
+          "amount": 14,
+          "unit": "calendar_days",
+          "standardText": "2 weeks",
+          "nextAction": "CRA's 2026–27 service standard is to issue a notice of assessment within two weeks for qualifying on-time digital T1 returns. The standard excludes several situations, including deceased, bankruptcy, international/non-resident, emigrant, multi-year and information-required files."
+        },
+        {
+          "id": "paper",
+          "label": "Paper — on-time, standard individual return",
+          "amount": 84,
+          "unit": "calendar_days",
+          "standardText": "12 weeks",
+          "nextAction": "CRA's 2026–27 service standard is to issue a notice of assessment within 12 weeks for qualifying on-time paper T1 returns. Some return types and files needing more information are excluded from this standard."
+        }
+      ]
+    },
+    {
+      "id": "cra-adjustment",
+      "name": "CRA T1 adjustment request — routine",
+      "category": "CRA",
+      "variantLabel": "How was the adjustment requested?",
+      "sourceLabel": "Canada Revenue Agency — 2026–27 Service standards",
+      "sourceUrl": "https://www.canada.ca/en/revenue-agency/services/about-canada-revenue-agency-cra/service-standards-cra/service-standards-2026-27.html",
+      "sourceChecks": ["within two weeks", "within eight weeks"],
+      "variants": [
+        {
+          "id": "digital",
+          "label": "Digital routine adjustment",
+          "amount": 14,
+          "unit": "calendar_days",
+          "standardText": "2 weeks",
+          "nextAction": "CRA's 2026–27 service standard for a routine digital T1 adjustment is two weeks. Complex requests or files requiring additional review can take longer."
+        },
+        {
+          "id": "paper-phone",
+          "label": "Paper or telephone routine adjustment",
+          "amount": 56,
+          "unit": "calendar_days",
+          "standardText": "8 weeks",
+          "nextAction": "CRA's 2026–27 service standard for a routine paper or telephone T1 adjustment is eight weeks. CRA's live processing time can be longer than the published service standard, so use the official source for the latest operational estimate."
+        }
+      ]
+    },
+    {
+      "id": "corporations-canada-incorporation",
+      "name": "Corporations Canada — incorporation",
+      "category": "Business",
+      "variantLabel": "Submission method",
+      "sourceLabel": "Corporations Canada — Service commitments",
+      "sourceUrl": "https://ised-isde.canada.ca/site/corporations-canada/en/data-services/service-commitments",
+      "sourceChecks": ["Incorporation", "1 day", "10 days"],
+      "variants": [
+        {
+          "id": "online",
+          "label": "Online incorporation",
+          "amount": 1,
+          "unit": "business_days",
+          "standardText": "1 business day",
+          "nextAction": "Corporations Canada's current service commitment for online incorporation is one business day. Check the filing status or contact Corporations Canada if the published commitment has passed."
+        },
+        {
+          "id": "mail-email",
+          "label": "Email or mail incorporation",
+          "amount": 10,
+          "unit": "business_days",
+          "standardText": "10 business days",
+          "nextAction": "Corporations Canada's current service commitment for incorporation submitted by email or mail is 10 business days."
+        }
+      ]
+    }
+  ]
+}

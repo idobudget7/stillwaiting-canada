@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="StillWaiting helps Canadians estimate when a published service standard is reached and what to do next." />
+  <meta name="theme-color" content="#f5f2ea" />
+  <title>StillWaiting — Canada</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="StillWaiting home">
+      <span class="flag" aria-hidden="true">🍁</span>
+      <span>StillWaiting</span>
+    </a>
+    <button class="plain-link" id="aboutButton" type="button">How it works</button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <p class="eyebrow">CANADA • OFFICIAL SOURCES • LIVE-CHECKED • NO ACCOUNT</p>
+      <h1>Still waiting?</h1>
+      <p class="hero-copy">Find out when a published Canadian service standard is expected to be reached — and what you can do next.</p>
+    </section>
+
+    <section class="checker" aria-labelledby="checkerTitle">
+      <div class="step-heading">
+        <span class="step-number">1</span>
+        <div>
+          <h2 id="checkerTitle">What are you waiting for?</h2>
+          <p>Choose a service. We only include rules we can link to an official source.</p>
+        </div>
+      </div>
+
+      <label class="field-label" for="serviceSelect">Service</label>
+      <select id="serviceSelect" class="control">
+        <option value="">Select a service…</option>
+      </select>
+
+      <div id="variantWrap" class="field-group hidden">
+        <label class="field-label" for="variantSelect" id="variantLabel">How did you apply?</label>
+        <select id="variantSelect" class="control"></select>
+      </div>
+
+      <div id="dateWrap" class="field-group hidden">
+        <label class="field-label" for="submittedDate">When was the complete request received?</label>
+        <input id="submittedDate" class="control" type="date" />
+        <p class="helper" id="dateHelper">Use the date the organization received the complete request, not the day you started preparing it.</p>
+      </div>
+
+      <button id="checkButton" class="primary-button hidden" type="button">Check my wait</button>
+      <p id="formError" class="form-error" role="alert"></p>
+    </section>
+
+    <section id="result" class="result hidden" aria-live="polite"></section>
+
+    <section class="trust-strip">
+      <div>
+        <strong>No email.</strong>
+        <span>No signup or account.</span>
+      </div>
+      <div>
+        <strong>No application number.</strong>
+        <span>Never enter SIN, passport or case numbers.</span>
+      </div>
+      <div>
+        <strong>Dates stay private.</strong>
+        <span>Your selected date is calculated in your browser and is not sent to our source-check endpoint.</span>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <p class="eyebrow">WHY THIS EXISTS</p>
+      <h2>Government pages tell you the rule. StillWaiting turns the rule into a date.</h2>
+      <p>Published service standards are not always legal deadlines or guarantees. Some requests can take longer, and extensions or special circumstances may apply. StillWaiting gives you a plain-language estimate and sends you back to the official source for the final word.</p>
+    </section>
+  </main>
+
+  <footer>
+    <span>StillWaiting is an independent utility and is not affiliated with the Government of Canada.</span>
+    <span id="dataStamp"></span>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
