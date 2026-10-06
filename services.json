@@ -1,24 +1,25 @@
 {
   "verified": "2026-10-05",
-  "reviewAfterDays": 30,
+  "reviewAfterDays": 14,
   "services": [
     {
       "id": "passport-regular",
       "name": "Canadian passport — regular service",
-      "category": "Passport",
+      "category": "Passport & travel",
       "variantLabel": "How did you apply?",
-      "sourceLabel": "Government of Canada — Passport service standards",
+      "dateLabel": "When was the complete application received?",
+      "sourceLabel": "Government of Canada — Passport processing times",
       "sourceUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports/processing-times.html",
-      "sourceChecks": ["10 business days", "20 business days"],
       "variants": [
         {
           "id": "passport-office",
-          "label": "In person — passport office / 10-day Service Canada location",
+          "label": "Passport office / qualifying 10-day Service Canada location",
           "amount": 10,
           "unit": "business_days",
           "standardText": "10 business days",
-          "nextAction": "If the published service standard has passed, check your application status using the official Passport Program service. A small number of files can take longer, especially if corrections, new photos, verifications or additional information are needed.",
-          "refundNote": "You may be eligible for an automatic fee refund under the Service Fees Act if the applicable remission rules are met."
+          "sourceChecks": ["10 business days"],
+          "nextAction": "If the published service standard has passed, check the application status through the official Passport Program. Some applications can take longer when additional verification, corrections, photos or information are required.",
+          "refundNote": "An automatic fee remission may apply when the applicable Passport Program remission rules are met."
         },
         {
           "id": "service-canada-mail-online",
@@ -26,27 +27,29 @@
           "amount": 20,
           "unit": "business_days",
           "standardText": "20 business days",
-          "nextAction": "If the published service standard has passed, check your application status using the official Passport Program service. Mailing time is not included in the service standard.",
-          "refundNote": "You may be eligible for an automatic fee refund under the Service Fees Act if the applicable remission rules are met."
+          "sourceChecks": ["20 business days"],
+          "nextAction": "If the published service standard has passed, check the application status through the official Passport Program. Mailing time is not included in the published service standard.",
+          "refundNote": "An automatic fee remission may apply when the applicable Passport Program remission rules are met."
         }
       ]
     },
     {
       "id": "passport-urgent-express",
       "name": "Canadian passport — urgent or express pickup",
-      "category": "Passport",
+      "category": "Passport & travel",
       "variantLabel": "Which pickup service?",
+      "dateLabel": "When was the complete application received?",
       "sourceLabel": "Government of Canada — Passport service standards",
-      "sourceUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports/processing-times.html",
-      "sourceChecks": ["urgent", "express", "business days"],
+      "sourceUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/service-declaration/service-standards.html",
       "variants": [
         {
           "id": "urgent",
           "label": "Urgent pickup",
           "amount": 1,
           "unit": "business_days",
-          "standardText": "By end of next business day",
-          "nextAction": "Use the pickup date provided by the passport officer as your primary date. If it has passed, contact the Passport Program or the office handling the application."
+          "standardText": "By the end of the next business day",
+          "sourceChecks": ["Urgent pickup", "end of the next business day"],
+          "nextAction": "Use the pickup date provided by the passport officer as the primary date. If that date has passed, contact the Passport Program or the office handling the application."
         },
         {
           "id": "express",
@@ -54,37 +57,334 @@
           "amount": 9,
           "unit": "business_days",
           "standardText": "2 to 9 business days",
-          "nextAction": "This calculator uses the outer end of the published 2-to-9-business-day range. Use the pickup date provided by the passport officer if you were given one."
+          "sourceChecks": ["Express pickup", "2 to 9 business days"],
+          "nextAction": "This estimate uses the outer end of the published 2-to-9-business-day range. Use the pickup date provided by the passport officer if one was given."
+        }
+      ]
+    },
+    {
+      "id": "pr-economic",
+      "name": "Permanent residence — economic programs",
+      "category": "Immigration & citizenship",
+      "variantLabel": "Which PR pathway?",
+      "dateLabel": "When did IRCC receive the complete PR application?",
+      "sourceLabel": "IRCC — Service standards",
+      "sourceUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/service-declaration/service-standards.html",
+      "secondaryUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/services/application/check-processing-times.html",
+      "secondaryLabel": "Check current IRCC processing time",
+      "variants": [
+        {
+          "id": "cec",
+          "label": "Canadian Experience Class — Express Entry",
+          "amount": 180,
+          "unit": "calendar_days",
+          "standardText": "180 days",
+          "sourceChecks": ["Canadian experience class", "180 days"],
+          "nextAction": "This is IRCC's published service standard for complete Canadian Experience Class applications within the approved annual immigration levels plan. Current queue-based processing estimates can be different, so compare this result with IRCC's current processing-time tool."
+        },
+        {
+          "id": "fsw",
+          "label": "Federal Skilled Worker — Express Entry",
+          "amount": 180,
+          "unit": "calendar_days",
+          "standardText": "180 days",
+          "sourceChecks": ["Federal Skilled Worker Program", "180 days"],
+          "nextAction": "This is IRCC's published service standard for complete Federal Skilled Worker applications within the approved annual immigration levels plan. Current queue-based processing estimates can be different, so compare this result with IRCC's current processing-time tool."
+        },
+        {
+          "id": "fst",
+          "label": "Federal Skilled Trades — Express Entry",
+          "amount": 180,
+          "unit": "calendar_days",
+          "standardText": "180 days",
+          "sourceChecks": ["Federal Skilled Trades Program", "180 days"],
+          "nextAction": "This is IRCC's published service standard. Current operational processing times can differ significantly from the service standard, so check IRCC's current processing-time tool before deciding whether a file is unusually delayed."
+        },
+        {
+          "id": "pnp-ee",
+          "label": "Provincial Nominee Program — Express Entry",
+          "amount": 180,
+          "unit": "calendar_days",
+          "standardText": "180 days",
+          "sourceChecks": ["Provincial Nominee Program", "Express Entry", "180 days"],
+          "nextAction": "The 180-day federal service standard does not include processing performed by the province or territory. Check IRCC's current processing-time tool for the latest operational estimate."
+        },
+        {
+          "id": "pnp-non-ee",
+          "label": "Provincial Nominee Program — non-Express Entry / paper stream",
+          "amount": 11,
+          "unit": "months",
+          "standardText": "11 months",
+          "sourceChecks": ["Provincial Nominee Program", "paper applications", "11 months"],
+          "nextAction": "The 11-month federal standard does not include processing performed by the province or territory. Check IRCC's current processing-time tool because the live estimate can be longer or shorter."
+        },
+        {
+          "id": "quebec-skilled",
+          "label": "Quebec-selected skilled worker",
+          "amount": 11,
+          "unit": "months",
+          "standardText": "11 months",
+          "sourceChecks": ["Quebec-selected skilled worker program", "11 months"],
+          "nextAction": "This federal standard excludes the provincial selection stage. Compare the result with IRCC's current processing-time tool for the live estimate."
+        }
+      ]
+    },
+    {
+      "id": "pr-family-overseas",
+      "name": "Permanent residence — spouse, partner or dependent child overseas",
+      "category": "Immigration & citizenship",
+      "variantLabel": "Application stream",
+      "dateLabel": "When did IRCC receive the complete PR application?",
+      "sourceLabel": "IRCC — Family Class Priority service standard",
+      "sourceUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/service-declaration/service-standards/family-class-priority-overseas.html",
+      "secondaryUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/services/application/check-processing-times.html",
+      "secondaryLabel": "Check current IRCC processing time",
+      "variants": [
+        {
+          "id": "family-overseas",
+          "label": "Overseas spouse, partner or dependent child",
+          "amount": 12,
+          "unit": "months",
+          "standardText": "12 months",
+          "sourceChecks": ["within 12 months"],
+          "nextAction": "IRCC's service standard is 12 months for complete overseas Family Class priority applications. This does not apply to every family sponsorship stream; current operational processing times may differ."
+        }
+      ]
+    },
+    {
+      "id": "pr-card",
+      "name": "Permanent resident card — first card",
+      "category": "Immigration & citizenship",
+      "variantLabel": "Card type",
+      "dateLabel": "When was permanent residence confirmed and the PR card form completed?",
+      "sourceLabel": "IRCC — Service standards",
+      "sourceUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/service-declaration/service-standards.html",
+      "secondaryUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/services/application/check-processing-times.html",
+      "secondaryLabel": "Check current IRCC processing time",
+      "variants": [
+        {
+          "id": "new-pr-card",
+          "label": "First PR card after becoming a permanent resident",
+          "amount": 60,
+          "unit": "calendar_days",
+          "standardText": "60 days",
+          "sourceChecks": ["New permanent resident card", "60 days"],
+          "nextAction": "The published standard is 60 days after confirming permanent residence and completing the required form at a port of entry or IRCC inland office. Check IRCC's current processing-time tool for current operations."
+        }
+      ]
+    },
+    {
+      "id": "citizenship-grant",
+      "name": "Canadian citizenship grant",
+      "category": "Immigration & citizenship",
+      "variantLabel": "Application type",
+      "dateLabel": "When did IRCC receive the complete application?",
+      "sourceLabel": "IRCC — Service standards",
+      "sourceUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/service-declaration/service-standards.html",
+      "secondaryUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/services/application/check-processing-times.html",
+      "secondaryLabel": "Check current IRCC processing time",
+      "variants": [
+        {
+          "id": "citizenship-adult-minor",
+          "label": "Citizenship grant — adult or minor",
+          "amount": 12,
+          "unit": "months",
+          "standardText": "12 months",
+          "sourceChecks": ["Citizenship grant", "12 months"],
+          "nextAction": "IRCC's published service standard for citizenship grants is 12 months. Check the current processing-time tool and your application status before treating a file as unusually delayed."
+        }
+      ]
+    },
+    {
+      "id": "work-permit",
+      "name": "Work permit",
+      "category": "Immigration & citizenship",
+      "variantLabel": "Which work permit request?",
+      "dateLabel": "When did IRCC receive the complete application?",
+      "sourceLabel": "IRCC — Service standards",
+      "sourceUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/service-declaration/service-standards.html",
+      "secondaryUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/services/application/check-processing-times.html",
+      "secondaryLabel": "Check current IRCC processing time",
+      "variants": [
+        {
+          "id": "outside-canada",
+          "label": "Initial work permit from outside Canada — excluding IEC",
+          "amount": 60,
+          "unit": "calendar_days",
+          "standardText": "60 days",
+          "sourceChecks": ["Initial work permits from outside Canada", "60 days"],
+          "nextAction": "The published service standard is 60 days for complete initial work permit applications from outside Canada, excluding International Experience Canada. Current processing estimates vary by country and application type."
+        },
+        {
+          "id": "extension-canada",
+          "label": "Work permit extension from inside Canada",
+          "amount": 120,
+          "unit": "calendar_days",
+          "standardText": "120 days",
+          "sourceChecks": ["Work permit extensions from in Canada", "120 days"],
+          "nextAction": "The published service standard is 120 days. Check IRCC's current processing-time tool because operational processing times can differ."
+        },
+        {
+          "id": "iec",
+          "label": "International Experience Canada work permit",
+          "amount": 56,
+          "unit": "calendar_days",
+          "standardText": "56 days or less",
+          "sourceChecks": ["International Experience Canada work permits", "56 days or less"],
+          "nextAction": "The published IEC service standard is 56 days or less for complete applications. IRCC may exclude certain periods from service-standard calculations, including some time related to required biometrics or medical information."
+        }
+      ]
+    },
+    {
+      "id": "study-permit",
+      "name": "Study permit",
+      "category": "Immigration & citizenship",
+      "variantLabel": "Which study permit request?",
+      "dateLabel": "When did IRCC receive the complete application?",
+      "sourceLabel": "IRCC — Service standards",
+      "sourceUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/service-declaration/service-standards.html",
+      "secondaryUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/services/application/check-processing-times.html",
+      "secondaryLabel": "Check current IRCC processing time",
+      "variants": [
+        {
+          "id": "outside-canada",
+          "label": "New study permit from outside Canada",
+          "amount": 60,
+          "unit": "calendar_days",
+          "standardText": "60 days",
+          "sourceChecks": ["New study permit applications submitted outside Canada", "60 days"],
+          "nextAction": "The published service standard is 60 days for complete new study permit applications submitted outside Canada. Current processing estimates vary and should be checked separately."
+        },
+        {
+          "id": "inside-canada",
+          "label": "New permit or extension from inside Canada",
+          "amount": 120,
+          "unit": "calendar_days",
+          "standardText": "120 days",
+          "sourceChecks": ["Study permit", "applications submitted in Canada", "120 days"],
+          "nextAction": "The published service standard is 120 days for complete study permit applications submitted in Canada, including extensions. Check IRCC's live processing-time tool for current operations."
+        }
+      ]
+    },
+    {
+      "id": "visitor-visa",
+      "name": "Visitor visa or super visa",
+      "category": "Immigration & citizenship",
+      "variantLabel": "Which application?",
+      "dateLabel": "When did IRCC receive the complete application?",
+      "sourceLabel": "IRCC — Service standards",
+      "sourceUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/service-declaration/service-standards.html",
+      "secondaryUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/services/application/check-processing-times.html",
+      "secondaryLabel": "Check current IRCC processing time",
+      "variants": [
+        {
+          "id": "visitor-visa-outside",
+          "label": "New visitor visa from outside Canada",
+          "amount": 14,
+          "unit": "calendar_days",
+          "standardText": "14 days",
+          "sourceChecks": ["New visitor visa applications submitted outside Canada", "14 days"],
+          "nextAction": "The published service standard is 14 days, but current operational processing times can differ substantially by country. Check IRCC's current processing-time tool."
+        },
+        {
+          "id": "super-visa",
+          "label": "Parent or grandparent super visa from outside Canada",
+          "amount": 112,
+          "unit": "calendar_days",
+          "standardText": "112 days",
+          "sourceChecks": ["parent and grandparent super visa", "112 days"],
+          "nextAction": "The published service standard is 112 days for complete new super visa applications submitted outside Canada. Check IRCC's current processing-time tool for the live estimate."
+        }
+      ]
+    },
+    {
+      "id": "status-restoration",
+      "name": "Restoration of temporary resident status",
+      "category": "Immigration & citizenship",
+      "variantLabel": "Request type",
+      "dateLabel": "When did IRCC receive the complete request?",
+      "sourceLabel": "IRCC — Service standards",
+      "sourceUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/service-declaration/service-standards.html",
+      "variants": [
+        {
+          "id": "restoration",
+          "label": "Restoration of temporary resident status",
+          "amount": 5,
+          "unit": "months",
+          "standardText": "5 months",
+          "sourceChecks": ["Restoration of temporary resident status", "5 months"],
+          "nextAction": "The published service standard is five months for complete restoration requests. Individual files can take longer when additional review is required."
+        }
+      ]
+    },
+    {
+      "id": "ei-regular",
+      "name": "Employment Insurance — regular benefits decision",
+      "category": "Benefits & identity",
+      "variantLabel": "Claim type",
+      "dateLabel": "When did you file the EI application?",
+      "sourceLabel": "Government of Canada — EI regular benefits after you apply",
+      "sourceUrl": "https://www.canada.ca/en/services/benefits/ei/ei-regular-benefit/after-applying.html",
+      "variants": [
+        {
+          "id": "regular-benefits",
+          "label": "EI regular benefits",
+          "amount": 28,
+          "unit": "calendar_days",
+          "standardText": "28 days",
+          "sourceChecks": ["decision within 28 days"],
+          "nextAction": "The service standard is to provide a decision within 28 days of filing. Missing Records of Employment or other required information can delay processing. Check My Service Canada Account for claim status and messages."
+        }
+      ]
+    },
+    {
+      "id": "sin-online",
+      "name": "Social Insurance Number — online application",
+      "category": "Benefits & identity",
+      "variantLabel": "Application method",
+      "dateLabel": "When was the complete SIN application received?",
+      "sourceLabel": "Government of Canada — SIN online application",
+      "sourceUrl": "https://sin-nas.canada.ca/en/Sin/",
+      "variants": [
+        {
+          "id": "online",
+          "label": "Online SIN application",
+          "amount": 5,
+          "unit": "business_days",
+          "standardText": "Processed within 5 business days",
+          "sourceChecks": ["within 5 business days", "within 10 business days"],
+          "nextAction": "Service Canada states that an online SIN application is processed within five business days, with a response provided by mail within 10 business days from receipt. This estimate tracks the processing portion, not postal delivery."
         }
       ]
     },
     {
       "id": "bank-complaint",
       "name": "Complaint to a federally regulated bank",
-      "category": "Banking",
+      "category": "Banking & complaints",
       "variantLabel": "Complaint type",
+      "dateLabel": "When did you first make the complaint to the bank?",
       "sourceLabel": "Financial Consumer Agency of Canada — Bank complaint rights",
       "sourceUrl": "https://www.canada.ca/en/financial-consumer-agency/services/complaints/file-complaint-financial-institution.html",
-      "sourceChecks": ["56 calendar days", "Ombudsman for Banking Services and Investments"],
       "variants": [
         {
           "id": "bank-written-response",
-          "label": "I made a complaint to my bank",
+          "label": "Complaint to a federally regulated bank",
           "amount": 56,
           "unit": "calendar_days",
           "standardText": "56 calendar days",
-          "nextAction": "A federally regulated bank must provide a detailed written response within 56 calendar days from when you first made the complaint. You may contact OBSI on the earlier of: more than 56 calendar days since you filed, or when the bank has provided its detailed written response and closed the file."
+          "sourceChecks": ["56 calendar days", "Ombudsman for Banking Services and Investments"],
+          "nextAction": "A federally regulated bank must provide a detailed written response within 56 calendar days from when you first made the complaint. You may contact OBSI on the earlier of more than 56 calendar days since filing, or after the bank provides its detailed written response and closes the complaint."
         }
       ]
     },
     {
       "id": "atip",
       "name": "Federal access to information / personal information request",
-      "category": "ATIP",
+      "category": "Government requests",
       "variantLabel": "Request type",
+      "dateLabel": "When did the federal institution receive the complete request?",
       "sourceLabel": "Treasury Board of Canada Secretariat — How ATIP requests work",
       "sourceUrl": "https://www.canada.ca/en/treasury-board-secretariat/services/access-information-privacy/access-information/how-access-information-personal-information-requests-work.html",
-      "sourceChecks": ["30 days", "extension"],
       "variants": [
         {
           "id": "access-info",
@@ -92,8 +392,9 @@
           "amount": 30,
           "unit": "calendar_days",
           "rollForwardIfClosed": true,
-          "standardText": "30 calendar days (subject to permitted extensions)",
-          "nextAction": "Federal institutions generally have 30 calendar days to respond. The deadline is counted from the day after receipt of a complete request; if it lands on a weekend or holiday, it moves to the next working day. A permitted extension can apply, and you should be notified within the first 30 days."
+          "standardText": "30 calendar days, subject to permitted extensions",
+          "sourceChecks": ["30 days", "extension"],
+          "nextAction": "Federal institutions generally have 30 calendar days to respond. A permitted extension can apply, and you should be notified when an extension is taken. If the calculated date falls on a weekend or federal holiday, this estimate moves it to the next working day."
         },
         {
           "id": "privacy",
@@ -101,46 +402,49 @@
           "amount": 30,
           "unit": "calendar_days",
           "rollForwardIfClosed": true,
-          "standardText": "30 calendar days (subject to permitted extensions)",
-          "nextAction": "Federal institutions generally have 30 calendar days to respond. The deadline is counted from the day after receipt of a complete request; if it lands on a weekend or holiday, it moves to the next working day. Privacy Act requests may be extended in specified circumstances, so check any extension notice before treating the request as overdue."
+          "standardText": "30 calendar days, subject to permitted extensions",
+          "sourceChecks": ["30 days", "extension"],
+          "nextAction": "Federal institutions generally have 30 calendar days to respond. Privacy Act requests may be extended in specified circumstances, so check any extension notice before treating the request as overdue."
         }
       ]
     },
     {
       "id": "cra-t1",
-      "name": "CRA individual tax return (T1)",
-      "category": "CRA",
+      "name": "CRA individual tax return — T1",
+      "category": "CRA & tax",
       "variantLabel": "How was the return filed?",
-      "sourceLabel": "Canada Revenue Agency — 2026–27 Service standards",
+      "dateLabel": "When did CRA receive the return?",
+      "sourceLabel": "Canada Revenue Agency — 2026–27 service standards",
       "sourceUrl": "https://www.canada.ca/en/revenue-agency/services/about-canada-revenue-agency-cra/service-standards-cra/service-standards-2026-27.html",
-      "sourceChecks": ["within two weeks", "within 12 weeks"],
       "variants": [
         {
           "id": "digital",
-          "label": "Digital — on-time, standard individual return",
+          "label": "Digital — on-time standard individual return",
           "amount": 14,
           "unit": "calendar_days",
           "standardText": "2 weeks",
-          "nextAction": "CRA's 2026–27 service standard is to issue a notice of assessment within two weeks for qualifying on-time digital T1 returns. The standard excludes several situations, including deceased, bankruptcy, international/non-resident, emigrant, multi-year and information-required files."
+          "sourceChecks": ["within two weeks"],
+          "nextAction": "CRA's 2026–27 service standard is to issue a notice of assessment within two weeks for qualifying on-time digital T1 returns. Several return types and files requiring more information are excluded."
         },
         {
           "id": "paper",
-          "label": "Paper — on-time, standard individual return",
+          "label": "Paper — on-time standard individual return",
           "amount": 84,
           "unit": "calendar_days",
           "standardText": "12 weeks",
-          "nextAction": "CRA's 2026–27 service standard is to issue a notice of assessment within 12 weeks for qualifying on-time paper T1 returns. Some return types and files needing more information are excluded from this standard."
+          "sourceChecks": ["within 12 weeks"],
+          "nextAction": "CRA's 2026–27 service standard is to issue a notice of assessment within 12 weeks for qualifying on-time paper T1 returns. Several return types and files requiring more information are excluded."
         }
       ]
     },
     {
       "id": "cra-adjustment",
       "name": "CRA T1 adjustment request — routine",
-      "category": "CRA",
+      "category": "CRA & tax",
       "variantLabel": "How was the adjustment requested?",
-      "sourceLabel": "Canada Revenue Agency — 2026–27 Service standards",
+      "dateLabel": "When did CRA receive the adjustment request?",
+      "sourceLabel": "Canada Revenue Agency — 2026–27 service standards",
       "sourceUrl": "https://www.canada.ca/en/revenue-agency/services/about-canada-revenue-agency-cra/service-standards-cra/service-standards-2026-27.html",
-      "sourceChecks": ["within two weeks", "within eight weeks"],
       "variants": [
         {
           "id": "digital",
@@ -148,6 +452,7 @@
           "amount": 14,
           "unit": "calendar_days",
           "standardText": "2 weeks",
+          "sourceChecks": ["within two weeks"],
           "nextAction": "CRA's 2026–27 service standard for a routine digital T1 adjustment is two weeks. Complex requests or files requiring additional review can take longer."
         },
         {
@@ -156,7 +461,8 @@
           "amount": 56,
           "unit": "calendar_days",
           "standardText": "8 weeks",
-          "nextAction": "CRA's 2026–27 service standard for a routine paper or telephone T1 adjustment is eight weeks. CRA's live processing time can be longer than the published service standard, so use the official source for the latest operational estimate."
+          "sourceChecks": ["within eight weeks"],
+          "nextAction": "CRA's 2026–27 service standard for a routine paper or telephone T1 adjustment is eight weeks. CRA's current operational processing time can be different from the published service standard."
         }
       ]
     },
@@ -165,9 +471,9 @@
       "name": "Corporations Canada — incorporation",
       "category": "Business",
       "variantLabel": "Submission method",
+      "dateLabel": "When did Corporations Canada receive the complete filing?",
       "sourceLabel": "Corporations Canada — Service commitments",
       "sourceUrl": "https://ised-isde.canada.ca/site/corporations-canada/en/data-services/service-commitments",
-      "sourceChecks": ["Incorporation", "1 day", "10 days"],
       "variants": [
         {
           "id": "online",
@@ -175,6 +481,7 @@
           "amount": 1,
           "unit": "business_days",
           "standardText": "1 business day",
+          "sourceChecks": ["Incorporation", "1 day"],
           "nextAction": "Corporations Canada's current service commitment for online incorporation is one business day. Check the filing status or contact Corporations Canada if the published commitment has passed."
         },
         {
@@ -183,6 +490,7 @@
           "amount": 10,
           "unit": "business_days",
           "standardText": "10 business days",
+          "sourceChecks": ["Incorporation", "10 days"],
           "nextAction": "Corporations Canada's current service commitment for incorporation submitted by email or mail is 10 business days."
         }
       ]

@@ -7,6 +7,8 @@ const variantSelect = $('variantSelect');
 const variantLabel = $('variantLabel');
 const dateWrap = $('dateWrap');
 const submittedDate = $('submittedDate');
+const submittedDateLabel = $('submittedDateLabel');
+const dateHelper = $('dateHelper');
 const checkButton = $('checkButton');
 const result = $('result');
 const formError = $('formError');
@@ -102,6 +104,15 @@ function addCalendarDays(start, amount) {
   d.setDate(d.getDate() + amount);
   return d;
 }
+function addMonths(start, amount) {
+  const d = new Date(start);
+  const originalDay = d.getDate();
+  d.setDate(1);
+  d.setMonth(d.getMonth() + amount);
+  const lastDay = new Date(d.getFullYear(), d.getMonth() + 1, 0, 12).getDate();
+  d.setDate(Math.min(originalDay, lastDay));
+  return d;
+}
 function daysBetween(a, b) {
   return Math.ceil((b - a) / 86400000);
 }
@@ -116,7 +127,10 @@ function businessDaysBetween(a, b) {
   return count;
 }
 function deadlineFor(start, v) {
-  let deadline = v.unit === 'business_days' ? addBusinessDays(start, v.amount) : addCalendarDays(start, v.amount);
+  let deadline;
+  if (v.unit === 'business_days') deadline = addBusinessDays(start, v.amount);
+  else if (v.unit === 'months') deadline = addMonths(start, v.amount);
+  else deadline = addCalendarDays(start, v.amount);
   if (v.rollForwardIfClosed) {
     while (!isBusinessDay(deadline)) deadline.setDate(deadline.getDate() + 1);
   }
@@ -153,6 +167,8 @@ function selectService() {
   variantSelect.innerHTML = state.service.variants.map((v, i) => `<option value="${v.id}">${v.label}</option>`).join('');
   variantWrap.classList.toggle('hidden', state.service.variants.length <= 1);
   state.variant = state.service.variants[0];
+  submittedDateLabel.textContent = state.service.dateLabel || 'When was the complete request received?';
+  dateHelper.textContent = state.service.dateHelper || 'Use the date the organization received the complete application or request.';
   dateWrap.classList.remove('hidden');
   checkButton.classList.remove('hidden');
 }
@@ -176,13 +192,13 @@ function makeICS(title, date, description) {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-async function checkOfficialSource(service) {
+async function checkOfficialSource(service, variant) {
   const box = $('sourceHealth');
-  if (!box || !service) return;
+  if (!box || !service || !variant) return;
   box.className = 'source-health checking';
   box.innerHTML = '<strong>Official-source check:</strong> checking the current government page…';
   try {
-    const res = await fetch(`/api/source-health?service=${encodeURIComponent(service.id)}`, { cache: 'no-store' });
+    const res = await fetch(`/api/source-health?service=${encodeURIComponent(service.id)}&variant=${encodeURIComponent(variant.id)}`, { cache: 'no-store' });
     if (!res.ok) throw new Error('source check failed');
     const health = await res.json();
     if (health.status === 'verified') {
@@ -226,6 +242,7 @@ function renderResult() {
     subline = 'You are still within the published service standard.';
   }
   const refund = state.variant.refundNote ? `<p class="disclaimer"><strong>Possible fee remission:</strong> ${state.variant.refundNote}</p>` : '';
+  const secondary = state.service.secondaryUrl ? `<a class="action-secondary" href="${state.service.secondaryUrl}" target="_blank" rel="noopener">${state.service.secondaryLabel || 'Check current processing time'} ↗</a>` : '';
   const businessNote = state.variant.unit === 'business_days' ? 'Business-day estimates exclude weekends and major federal holidays. Individual offices or programs may calculate operating days differently.' : '';
   result.innerHTML = `
     <div class="result-top">
@@ -242,6 +259,7 @@ function renderResult() {
       <p>${state.variant.nextAction}</p>
       <div class="action-row">
         <a class="action" href="${state.service.sourceUrl}" target="_blank" rel="noopener">Open official source ↗</a>
+        ${secondary}
         <button class="action-secondary" id="calendarButton" type="button">Add follow-up date to calendar</button>
         <button class="action-secondary" id="resetButton" type="button">Check another</button>
       </div>
@@ -250,7 +268,7 @@ function renderResult() {
       <p class="disclaimer"><strong>Source:</strong> ${state.service.sourceLabel}. Stored rule last reviewed ${state.data.verified}. ${businessNote} This is an informational estimate, not legal advice or a guarantee of processing time.</p>
     </div>`;
   result.classList.remove('hidden');
-  checkOfficialSource(state.service);
+  checkOfficialSource(state.service, state.variant);
   $('calendarButton').addEventListener('click', () => makeICS(`Follow up: ${state.service.name}`, deadline, `Published standard: ${state.variant.standardText}. Check the official source: ${state.service.sourceUrl}`));
   $('resetButton').addEventListener('click', () => { serviceSelect.value = ''; submittedDate.value = ''; selectService(); window.scrollTo({ top: document.querySelector('.checker').offsetTop - 30, behavior: 'smooth' }); });
   result.scrollIntoView({ behavior: 'smooth', block: 'start' });
